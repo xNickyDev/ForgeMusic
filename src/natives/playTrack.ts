@@ -1,5 +1,5 @@
-import { ArgType, NativeFunction, Return } from "forgescript";
-import { Providers } from "naoko-player";
+import { ArgType, NativeFunction, Return } from "@tryforge/forgescript"
+import { Providers } from "naoko-player"
 
 export default new NativeFunction({
     name: "$playTrack",
@@ -18,10 +18,10 @@ export default new NativeFunction({
         }
     ],
     async execute(ctx, [encodedId]) {
-        const track = Providers.Provider.cache.get(encodedId);
-        const node = ctx.client.music.manager.getNode(ctx.guild.id, true);
-        node.playTrack(track);
+        const track = Providers.Provider.cache.get(encodedId)
+        const node = ctx.client.music.manager.getNode(ctx.guild.id, true)
+        node.playTrack(track)
 
-        return Return.success(true);
+        return this.success(true)
     }
-});
+})

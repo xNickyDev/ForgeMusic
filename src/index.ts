@@ -1,4 +1,4 @@
-import ForgeMusic from "./core/ForgeMusic";
+import ForgeMusic from "./core/ForgeMusic"
 
 export {
     ForgeMusic

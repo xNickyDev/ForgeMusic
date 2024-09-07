@@ -1,6 +1,6 @@
-import { ArgType, NativeFunction, Return } from "forgescript";
-import { joinVoiceChannel } from "@discordjs/voice";
-import type { GuildChannel } from "discord.js";
+import { ArgType, NativeFunction, Return } from "@tryforge/forgescript"
+import { joinVoiceChannel } from "@discordjs/voice"
+import type { GuildChannel } from "discord.js"
 
 export default new NativeFunction({
     name: "$vcJoin",
@@ -23,10 +23,10 @@ export default new NativeFunction({
             channelId: voiceChannel.id,
             guildId: voiceChannel.guildId,
             adapterCreator: voiceChannel.guild.voiceAdapterCreator
-        });
+        })
 
-        const node = ctx.client.music.manager.getNode(ctx.guild.id, true);
-        con.subscribe(node['_player']);
-        return Return.success();
+        const node = ctx.client.music.manager.getNode(ctx.guild.id, true)
+        con.subscribe(node["_player"])
+        return this.success()
     }
-});
+})

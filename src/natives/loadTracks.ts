@@ -1,5 +1,5 @@
-import { ArgType, NativeFunction, Return } from "forgescript";
-import { Providers, enums } from "naoko-player";
+import { ArgType, NativeFunction, Return } from "@tryforge/forgescript"
+import { Providers, enums } from "naoko-player"
 
 export default new NativeFunction({
     name: "$loadTracks",
@@ -31,11 +31,10 @@ export default new NativeFunction({
             required: false
         }
     ],
-    async execute(ctx, [query, loadType, 
-        providerName = ctx.getEnvironmentKey('music_default_prov') || 
-        ctx.client.music.options.defaultProvider]) {
+    async execute(ctx, [query, loadType, providerName]) {
+        providerName = (ctx.getEnvironmentKey("music_default_prov") || ctx.client.music.options.defaultProvider) as string
 
-        const provider = ctx.client.music.manager.providers.get(providerName);
-        return Return.success((await provider.loadTracks(query, loadType)).map(x => x['encodedId'] || x.sourceURL).join(', '));
+        const provider = ctx.client.music.manager.providers.get(providerName)
+        return this.success((await provider.loadTracks(query, loadType)).map(x => x["encodedId"] || x.sourceURL).join(", "))
     }
-});
+})

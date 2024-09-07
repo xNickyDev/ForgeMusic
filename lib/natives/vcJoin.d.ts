@@ -1,4 +1,4 @@
-import { ArgType, NativeFunction } from "forgescript";
+import { ArgType, NativeFunction } from "@tryforge/forgescript";
 import type { GuildChannel } from "discord.js";
 declare const _default: NativeFunction<[{
     name: string;
@@ -6,6 +6,6 @@ declare const _default: NativeFunction<[{
     type: ArgType.Channel;
     rest: false;
     required: true;
-    check: (i: GuildChannel) => boolean;
+    check: (i: GuildChannel) => i is import("discord.js").VoiceBasedChannel;
 }], true>;
 export default _default;
