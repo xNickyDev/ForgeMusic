@@ -1,6 +1,8 @@
 # Folders
 __dump__/
 __test__/
+docs/
+metadata/
 node_modules/
 src/
 

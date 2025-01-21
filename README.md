@@ -43,10 +43,6 @@ const { ForgeMusic } = require("@tryforge/forge.music");
 ```
 As it is required, now you are allowed to create an instance of it.
 ```js
-// Without options.
-const music = new ForgeMusic();
-
-// With options.
 const music = new ForgeMusic({
     events: []
 });
@@ -210,8 +206,7 @@ const music = new ForgeMusic({
 });
 ```
 ### Adding Support for YouTube
-ForgeMusic by default provides support for streaming from YouTube, but the native method is not stable as intended.
-For this, you must omit the registration of the default **YouTube Extractor** by doing the following step.
+ForgeMusic by default does not provide support for streaming from YouTube.
 You must install `discord-player-youtubei` and then require `YoutubeiExtractor` from it.
 ```bash
 npm install discord-player-youtubei
