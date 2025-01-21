@@ -1,4 +1,4 @@
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSUzclkbLsI7SU-bpLU87LWTP3YN9g7oFkQ2vOJqhirn03qEeex9M2vo5N&s=10" align="right" height=100 alt="cat" />
+<img src="https://i.imgur.com/Ew9MXaP.jpeg" align="right" height=100 alt="isologo" />
 
 # ForgeMusic
 An standard music library tailored for [ForgeScript](https://npmjs.com/package/@tryforge/forgescript).
