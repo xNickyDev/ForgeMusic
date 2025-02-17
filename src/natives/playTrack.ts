@@ -57,12 +57,11 @@ export default new NativeFunction({
         const result = await player
             .play(<VoiceBasedChannel>voiceChannel, query, {
                 nodeOptions: connectionOptionsUnion,
-                searchEngine: searchEngine as
-                    | (SearchQueryType | `ext:${string}`)
-                    | undefined,
-                fallbackSearchEngine,
-                blockExtractors,
-                // @ts-ignore
+                searchEngine:
+                    <SearchQueryType | `ext:${string}`>searchEngine ||
+                    undefined,
+                fallbackSearchEngine: fallbackSearchEngine || undefined,
+                blockExtractors: blockExtractors || undefined,
                 requestedBy: ctx.user,
             })
             .catch((e) => {

@@ -5,7 +5,7 @@ export declare enum FFMPEGFilters {
     Bassboost_low = "Bassboost_low",
     Bassboost = "Bassboost",
     Bassboost_high = "Bassboost_high",
-    "8d" = "8d",
+    '8d' = "8d",
     Vaporwave = "Vaporwave",
     Nightcore = "Nightcore",
     Lofi = "Lofi",

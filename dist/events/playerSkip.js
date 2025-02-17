@@ -6,7 +6,7 @@ const ForgeMusic_1 = require("../classes/structures/ForgeMusic");
 const discord_player_1 = require("discord-player");
 exports.default = new MusicEventHandler_1.MusicEventHandler({
     name: discord_player_1.GuildQueueEvent.PlayerSkip,
-    description: "Executed when the audio player skips current track.",
+    description: 'Executed when the audio player skips current track.',
     async listener(queue, track, reason, description) {
         const commands = this.getExtension(ForgeMusic_1.ForgeMusic).commands.get(discord_player_1.GuildQueueEvent.PlayerSkip);
         if (!commands)
@@ -17,12 +17,9 @@ exports.default = new MusicEventHandler_1.MusicEventHandler({
                 client: this,
                 command,
                 environment: { queue, track, reason, description },
-                data: command.compiled.code
+                data: command.compiled.code,
             });
-            await this.getExtension(ForgeMusic_1.ForgeMusic)
-                .player
-                .context
-                .provide(context, () => forgescript_1.Interpreter.run(context));
+            await this.getExtension(ForgeMusic_1.ForgeMusic).player.context.provide(context, () => forgescript_1.Interpreter.run(context));
         }
-    }
+    },
 });

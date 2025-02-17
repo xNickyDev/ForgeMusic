@@ -1,6 +1,6 @@
-import { BaseEventHandler, ForgeClient } from "@tryforge/forgescript";
-import { GuildQueueEvent, GuildQueueEvents } from "discord-player";
-import { GuildTextBasedChannel } from "discord.js";
+import { BaseEventHandler, ForgeClient } from '@tryforge/forgescript';
+import { GuildQueueEvent, GuildQueueEvents } from 'discord-player';
+import { GuildTextBasedChannel } from 'discord.js';
 /**
  * Fix the typings for the music event handler.
  */

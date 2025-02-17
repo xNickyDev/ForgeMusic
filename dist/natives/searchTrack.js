@@ -6,45 +6,47 @@ const constants_1 = require("../utils/constants");
 const node_vm_1 = require("node:vm");
 const ForgeMusic_1 = require("../classes/structures/ForgeMusic");
 exports.default = new forgescript_1.NativeFunction({
-    name: "$searchTrack",
-    version: "1.0.0",
-    description: "Search for a track using the given query.",
+    name: '$searchTrack',
+    version: '1.0.0',
+    description: 'Search for a track using the given query.',
     brackets: true,
     unwrap: true,
     args: [
-        forgescript_1.Arg.requiredString("Query", "The query to search for."),
-        forgescript_1.Arg.requiredString("Text Result", "The formatted text result to return."),
-        forgescript_1.Arg.optionalString("Separator", "The result separator."),
-        forgescript_1.Arg.optionalString("Engine", "The query search engine, can be extractor name to target an specific one. (custom)"),
-        forgescript_1.Arg.optionalEnum(discord_player_1.QueryType, "Fallback Engine", "Fallback search engine to use."),
-        forgescript_1.Arg.optionalNumber("Limit", "The maximum number of results to return."),
-        forgescript_1.Arg.optionalBoolean("Add To Player", "Whether add the results to the music player."),
+        forgescript_1.Arg.requiredString('Query', 'The query to search for.'),
+        forgescript_1.Arg.requiredString('Text Result', 'The formatted text result to return.'),
+        forgescript_1.Arg.optionalString('Separator', 'The result separator.'),
+        forgescript_1.Arg.optionalString('Engine', 'The query search engine, can be extractor name to target an specific one. (custom)'),
+        forgescript_1.Arg.optionalEnum(discord_player_1.QueryType, 'Fallback Engine', 'Fallback search engine to use.'),
+        forgescript_1.Arg.optionalNumber('Limit', 'The maximum number of results to return.'),
+        forgescript_1.Arg.optionalBoolean('Add To Player', 'Whether add the results to the music player.'),
         {
-            name: "Block Extractors",
-            description: "List of extractors to block.",
+            name: 'Block Extractors',
+            description: 'List of extractors to block.',
             type: forgescript_1.ArgType.String,
             required: false,
-            rest: true
-        }
+            rest: true,
+        },
     ],
-    async execute(ctx, [query, text, separator, engine, fallbackEngine, limit, addToPlayer, blockedExtractors]) {
+    async execute(ctx, [query, text, separator, engine, fallbackEngine, limit, addToPlayer, blockedExtractors,]) {
         const searchOptions = {
-            searchEngine: engine,
-            fallbackSearchEngine: fallbackEngine,
-            blockExtractors: blockedExtractors,
-            requestedBy: ctx.user
+            searchEngine: engine || undefined,
+            fallbackSearchEngine: fallbackEngine || undefined,
+            blockExtractors: blockedExtractors || undefined,
+            requestedBy: ctx.user,
         };
-        console.log(['SEARCH_OPTIONS', searchOptions]);
-        const searchResult = await ctx.client.getExtension(ForgeMusic_1.ForgeMusic).player.search(query, searchOptions);
+        const searchResult = await ctx.client
+            .getExtension(ForgeMusic_1.ForgeMusic)
+            .player.search(query, searchOptions);
         const connectOptions = ctx.getExtension(ForgeMusic_1.ForgeMusic).connectOptions ?? {};
         const connectionOptionsUnion = {
             metadata: { text: ctx.channel },
-            ...connectOptions
+            ...connectOptions,
         };
         let tracks = searchResult.tracks;
         if (limit && tracks.length > limit)
             tracks = tracks.slice(0, limit);
-        const formattedTracks = tracks.map((_, i) => text.replace(/\{position\}/g, String(i + 1)))
+        const formattedTracks = tracks
+            .map((_, i) => text.replace(/\{position\}/g, String(i + 1)))
             .map((trackText, i) => {
             const track = tracks[i];
             const matches = trackText.match(constants_1.PLACEHOLDER_PATTERN) ?? [];
@@ -52,7 +54,7 @@ exports.default = new forgescript_1.NativeFunction({
             for (const match of matches) {
                 const placeholderValue = match.slice(1, -1);
                 const result = (0, node_vm_1.runInContext)(placeholderValue, context);
-                trackText = trackText.replace(new RegExp(match, "g"), result);
+                trackText = trackText.replace(new RegExp(match, 'g'), result);
             }
             return trackText;
         });
@@ -60,9 +62,13 @@ exports.default = new forgescript_1.NativeFunction({
         if (addToPlayer && queue)
             queue.addTrack(tracks);
         else if (addToPlayer && !queue) {
-            queue = await ctx.client.getExtension(ForgeMusic_1.ForgeMusic).player.queues.create(ctx.guild.id, connectionOptionsUnion);
+            queue = await ctx.client
+                .getExtension(ForgeMusic_1.ForgeMusic)
+                .player.queues.create(ctx.guild.id, connectionOptionsUnion);
             queue.addTrack(tracks);
         }
-        return this.success(searchResult.tracks.length > 0 ? formattedTracks.join(separator ?? ",") : "");
-    }
+        return this.success(searchResult.tracks.length > 0
+            ? formattedTracks.join(separator ?? ',')
+            : '');
+    },
 });

@@ -10,7 +10,7 @@ const discord_player_1 = require("discord-player");
 const eventName = discord_player_1.GuildQueueEvent.AudioFiltersUpdate;
 exports.default = new MusicEventHandler_1.MusicEventHandler({
     name: eventName,
-    description: "Executed when FFMPEG audio filters are updated.",
+    description: 'Executed when FFMPEG audio filters are updated.',
     async listener(queue, oldFilters, newFilters) {
         const commands = this.getExtension(ForgeMusic_1.ForgeMusic).commands.get(eventName);
         if (!commands)
@@ -21,12 +21,9 @@ exports.default = new MusicEventHandler_1.MusicEventHandler({
                 client: this,
                 command,
                 environment: { queue, oldFilters, newFilters },
-                data: command.compiled.code
+                data: command.compiled.code,
             });
-            await this.getExtension(ForgeMusic_1.ForgeMusic)
-                .player
-                .context
-                .provide(context, () => forgescript_1.Interpreter.run(context));
+            await this.getExtension(ForgeMusic_1.ForgeMusic).player.context.provide(context, () => forgescript_1.Interpreter.run(context));
         }
-    }
+    },
 });

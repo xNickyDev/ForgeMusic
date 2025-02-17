@@ -53,12 +53,12 @@ export default new NativeFunction({
         ]
     ) {
         const searchOptions = {
-            searchEngine: engine as SearchQueryType | `ext:${string}`,
-            fallbackSearchEngine: fallbackEngine,
-            blockExtractors: blockedExtractors,
+            searchEngine:
+                <SearchQueryType | `ext:${string}`>engine || undefined,
+            fallbackSearchEngine: fallbackEngine || undefined,
+            blockExtractors: blockedExtractors || undefined,
             requestedBy: ctx.user,
         }
-        console.log(['SEARCH_OPTIONS', searchOptions])
         const searchResult = await ctx.client
             .getExtension(ForgeMusic)
             .player.search(query, searchOptions)

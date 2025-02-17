@@ -8,7 +8,7 @@ const path_1 = require("path");
  * @returns {string}
  */
 function getVersion() {
-    const stringContent = (0, fs_1.readFileSync)((0, path_1.join)(process.cwd(), "package.json"), "utf-8");
+    const stringContent = (0, fs_1.readFileSync)((0, path_1.join)(process.cwd(), 'package.json'), 'utf-8');
     const data = JSON.parse(stringContent);
     return data.version;
 }

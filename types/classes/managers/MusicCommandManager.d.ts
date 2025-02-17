@@ -1,5 +1,5 @@
-import { BaseCommandManager } from "@tryforge/forgescript";
-import { GuildQueueEvent } from "discord-player";
+import { BaseCommandManager } from '@tryforge/forgescript';
+import { GuildQueueEvent } from 'discord-player';
 /**
  * Common music handler name.
  */

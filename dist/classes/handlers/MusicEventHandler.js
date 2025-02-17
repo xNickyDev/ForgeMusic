@@ -12,7 +12,9 @@ class MusicEventHandler extends forgescript_1.BaseEventHandler {
      * @param client - ForgeClient instance.
      */
     register(client) {
-        client.getExtension(ForgeMusic_1.ForgeMusic).player.events.on(this.name, this.listener.bind(client));
+        client
+            .getExtension(ForgeMusic_1.ForgeMusic)
+            .player.events.on(this.name, this.listener.bind(client));
     }
 }
 exports.MusicEventHandler = MusicEventHandler;

@@ -4,12 +4,14 @@ const forgescript_1 = require("@tryforge/forgescript");
 const constants_1 = require("../utils/constants");
 const discord_player_1 = require("discord-player");
 exports.default = new forgescript_1.NativeFunction({
-    name: "$disableAllFilters",
-    version: "1.0.0",
-    description: "Disable the provided FFMPEG filters.",
+    name: '$disableAllFilters',
+    version: '1.0.0',
+    description: 'Disable the provided FFMPEG filters.',
     brackets: true,
     unwrap: true,
-    args: [forgescript_1.Arg.restEnum(constants_1.FFMPEGFilters, "Filters", "Filter names to be disabled.")],
+    args: [
+        forgescript_1.Arg.restEnum(constants_1.FFMPEGFilters, 'Filters', 'Filter names to be disabled.'),
+    ],
     async execute(ctx, [filters]) {
         const queue = (0, discord_player_1.useQueue)(ctx.guild.id);
         const allFilters = queue.filters.ffmpeg.getFiltersEnabled();
@@ -18,5 +20,5 @@ exports.default = new forgescript_1.NativeFunction({
             await queue.filters.ffmpeg.toggle(foundFilter);
         }
         return this.success();
-    }
+    },
 });

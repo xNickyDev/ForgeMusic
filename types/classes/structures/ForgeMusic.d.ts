@@ -1,6 +1,6 @@
-import { type BaseExtractor, GuildNodeCreateOptions, GuildQueueEvent, Player, type PlayerInitOptions } from "discord-player";
-import { ForgeClient, ForgeExtension } from "@tryforge/forgescript";
-import { MusicCommandManager } from "../managers/MusicCommandManager";
+import { type BaseExtractor, GuildNodeCreateOptions, GuildQueueEvent, Player, type PlayerInitOptions } from 'discord-player';
+import { ForgeClient, ForgeExtension } from '@tryforge/forgescript';
+import { MusicCommandManager } from '../managers/MusicCommandManager';
 /**
  * Constructor options of the music extension.
  */
@@ -8,7 +8,7 @@ interface ForgeMusicInitOptions extends PlayerInitOptions {
     /**
      * Options that are used when a guild node is created.
      */
-    connectOptions?: Omit<GuildNodeCreateOptions<unknown>, "metadata">;
+    connectOptions?: Omit<GuildNodeCreateOptions<unknown>, 'metadata'>;
     /**
      * Array of event names the extension must listen to.
      */
@@ -16,7 +16,7 @@ interface ForgeMusicInitOptions extends PlayerInitOptions {
     /**
      * Predicate to load certain extractors.
      */
-    includeExtractors?: typeof BaseExtractor[];
+    includeExtractors?: (typeof BaseExtractor)[];
 }
 /**
  * The entrypoint of the forge music system.

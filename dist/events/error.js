@@ -6,7 +6,7 @@ const ForgeMusic_1 = require("../classes/structures/ForgeMusic");
 const discord_player_1 = require("discord-player");
 exports.default = new MusicEventHandler_1.MusicEventHandler({
     name: discord_player_1.GuildQueueEvent.Error,
-    description: "Executed when the queue encounters error.",
+    description: 'Executed when the queue encounters error.',
     async listener(queue, error) {
         const commands = this.getExtension(ForgeMusic_1.ForgeMusic).commands.get(discord_player_1.GuildQueueEvent.Error);
         if (!commands)
@@ -17,12 +17,9 @@ exports.default = new MusicEventHandler_1.MusicEventHandler({
                 client: this,
                 command,
                 environment: { queue, error },
-                data: command.compiled.code
+                data: command.compiled.code,
             });
-            await this.getExtension(ForgeMusic_1.ForgeMusic)
-                .player
-                .context
-                .provide(context, () => forgescript_1.Interpreter.run(context));
+            await this.getExtension(ForgeMusic_1.ForgeMusic).player.context.provide(context, () => forgescript_1.Interpreter.run(context));
         }
-    }
+    },
 });

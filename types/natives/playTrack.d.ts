@@ -1,5 +1,5 @@
-import { ArgType, NativeFunction } from "@tryforge/forgescript";
-import { BaseChannel, VoiceBasedChannel } from "discord.js";
+import { ArgType, NativeFunction } from '@tryforge/forgescript';
+import { BaseChannel, VoiceBasedChannel } from 'discord.js';
 declare const _default: NativeFunction<[{
     name: string;
     description: string;

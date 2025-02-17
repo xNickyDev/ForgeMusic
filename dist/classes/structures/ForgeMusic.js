@@ -11,8 +11,8 @@ const getVersion_1 = require("../../utils/getVersion");
 class ForgeMusic extends forgescript_1.ForgeExtension {
     options;
     /** Cock my beloved. <3 */
-    name = "ForgeMusic";
-    description = "A standard music library tailored for ForgeScript.";
+    name = 'ForgeMusic';
+    description = 'A standard music library tailored for ForgeScript.';
     version = (0, getVersion_1.getVersion)();
     /**
      * The entrypoint of the player application.
@@ -25,7 +25,7 @@ class ForgeMusic extends forgescript_1.ForgeExtension {
     /**
      * The required intents for this extension to work.
      */
-    requiredIntents = ["GuildVoiceStates"];
+    requiredIntents = ['GuildVoiceStates'];
     /**
      * Creates an instance of the music extension.
      * @returns {ForgeMusic}
@@ -61,22 +61,23 @@ class ForgeMusic extends forgescript_1.ForgeExtension {
         }
         // Loading the extractors.
         if (this.options.includeExtractors) {
-            this.player.extractors.loadMulti(this.options.includeExtractors)
-                .then(() => forgescript_1.Logger.info("Extractors loaded successfully!"))
-                .catch((e) => forgescript_1.Logger.error("Unable to load the extractors; with reason: " + e));
+            this.player.extractors
+                .loadMulti(this.options.includeExtractors)
+                .then(() => forgescript_1.Logger.info('Extractors loaded successfully!'))
+                .catch((e) => forgescript_1.Logger.error('Unable to load the extractors; with reason: ' + e));
         }
     }
     /**
      * Returns the events location.
      */
     get eventsLocation() {
-        return __dirname.replace(/classes(\\|\/)structures/, "events");
+        return __dirname.replace(/classes(\\|\/)structures/, 'events');
     }
     /**
      * Returns the native functions location.
      */
     get nativesLocation() {
-        return __dirname.replace(/classes(\\|\/)structures/, "natives");
+        return __dirname.replace(/classes(\\|\/)structures/, 'natives');
     }
     /**
      * Returns the user-defined `on connect` options.
@@ -89,7 +90,9 @@ class ForgeMusic extends forgescript_1.ForgeExtension {
      * @returns {boolean}
      */
     #hasInvalidEvents() {
-        return this.options && this.options.events && this.options.events.some(this.#invalidEventPredicate);
+        return (this.options &&
+            this.options.events &&
+            this.options.events.some(this.#invalidEventPredicate));
     }
     /**
      * Event check predicate.
@@ -97,7 +100,9 @@ class ForgeMusic extends forgescript_1.ForgeExtension {
      * @returns {boolean}
      */
     #invalidEventPredicate(event) {
-        return event === discord_player_1.GuildQueueEvent.VoiceStateUpdate || event === discord_player_1.GuildQueueEvent.WillAutoPlay || event === discord_player_1.GuildQueueEvent.WillPlayTrack;
+        return (event === discord_player_1.GuildQueueEvent.VoiceStateUpdate ||
+            event === discord_player_1.GuildQueueEvent.WillAutoPlay ||
+            event === discord_player_1.GuildQueueEvent.WillPlayTrack);
     }
 }
 exports.ForgeMusic = ForgeMusic;

@@ -5,7 +5,7 @@ const forgescript_1 = require("@tryforge/forgescript");
 /**
  * Common music handler name.
  */
-exports.handlerName = "ForgeMusic";
+exports.handlerName = 'ForgeMusic';
 /**
  * The music command manager.
  */
