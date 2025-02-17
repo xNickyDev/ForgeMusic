@@ -17,14 +17,9 @@
             "@structures/*": ["./src/classes/structures/*"]
         },
         "tsBuildInfoFile": "./__dump__/.tsbuildinfo",
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true
     },
-    "include": [
-        "./src/**/*.ts"
-    ],
-    "exclude": [
-        "./__dump__",
-        "./__test__",
-        "./node_modules",
-    ]
+    "include": ["./src/**/*.ts"],
+    "exclude": ["./__dump__", "./__test__", "./node_modules"]
 }

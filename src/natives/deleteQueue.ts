@@ -1,17 +1,17 @@
-import { ArgType, NativeFunction } from "@tryforge/forgescript"
-import { useQueue } from "discord-player"
+import { ArgType, NativeFunction } from '@tryforge/forgescript'
+import { useQueue } from 'discord-player'
 
 export default new NativeFunction({
-    name: "$deleteQueue",
-    version: "1.0.0",
-    description: "Deletes the queue of the current guild.",
+    name: '$deleteQueue',
+    version: '1.0.0',
+    description: 'Deletes the queue of the current guild.',
     unwrap: false,
     output: ArgType.Unknown,
     execute(ctx) {
-        if (useQueue(ctx.guild)) {
-            useQueue(ctx.guild).delete()
+        if (useQueue(ctx.guild.id)) {
+            useQueue(ctx.guild.id).delete()
         }
 
         return this.success()
-    }
+    },
 })

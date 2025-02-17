@@ -9,7 +9,7 @@ exports.default = new forgescript_1.NativeFunction({
     unwrap: false,
     output: forgescript_1.ArgType.String,
     execute(ctx) {
-        const queue = (0, discord_player_1.useQueue)(ctx.guild);
+        const queue = (0, discord_player_1.useQueue)(ctx.guild.id);
         return this.success(queue.filters.ffmpeg.getFiltersDisabled().join(","));
     }
 });

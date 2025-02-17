@@ -1,5 +1,5 @@
-import { readFileSync } from "fs"
-import { join } from "path"
+import { readFileSync } from 'fs'
+import { join } from 'path'
 
 /**
  * Returns the package version.
@@ -7,11 +7,8 @@ import { join } from "path"
  */
 export function getVersion() {
     const stringContent = readFileSync(
-        join(
-            process.cwd(),
-            "package.json"
-        ),
-        "utf-8"
+        join(process.cwd(), 'package.json'),
+        'utf-8'
     )
     const data = JSON.parse(stringContent)
 

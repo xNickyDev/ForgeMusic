@@ -42,11 +42,13 @@ exports.default = new forgescript_1.NativeFunction({
             searchEngine: searchEngine,
             fallbackSearchEngine,
             blockExtractors,
+            // @ts-ignore
             requestedBy: ctx.user
         }).catch((e) => {
             executed = false;
             return e;
         });
+        console.log(['PLAY_TRACK_RESULTS', result]);
         return executed ? this.success() : this.error(result);
     }
 });

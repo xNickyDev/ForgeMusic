@@ -8,7 +8,7 @@ exports.default = new forgescript_1.NativeFunction({
     description: "Clear the guild queue.",
     unwrap: false,
     execute(ctx) {
-        const queue = (0, discord_player_1.useQueue)(ctx.guild);
+        const queue = (0, discord_player_1.useQueue)(ctx.guild.id);
         queue.clear();
         return this.success();
     }

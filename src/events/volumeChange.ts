@@ -1,7 +1,7 @@
-import { MusicEventHandler } from "@handlers/MusicEventHandler"
-import { Context, Interpreter } from "@tryforge/forgescript"
-import { ForgeMusic } from "@structures/ForgeMusic"
-import { GuildQueueEvent } from "discord-player"
+import { MusicEventHandler } from '@handlers/MusicEventHandler'
+import { Context, Interpreter } from '@tryforge/forgescript'
+import { ForgeMusic } from '@structures/ForgeMusic'
+import { GuildQueueEvent } from 'discord-player'
 
 /**
  * The event should be listen to.
@@ -13,7 +13,7 @@ export default new MusicEventHandler({
     description: "Executed when audio player's volume is changed.",
     async listener(queue, oldVolume, newVolume) {
         const commands = this.getExtension(ForgeMusic).commands.get(eventName)
-        if (!commands) return;
+        if (!commands) return
 
         for (const command of commands) {
             const context = new Context({
@@ -21,13 +21,13 @@ export default new MusicEventHandler({
                 client: this,
                 command,
                 environment: { queue, oldVolume, newVolume },
-                data: command.compiled.code
+                data: command.compiled.code,
             })
 
-            await this.getExtension(ForgeMusic)
-            .player
-            .context
-            .provide(context, () => Interpreter.run(context))
+            await this.getExtension(ForgeMusic).player.context.provide(
+                context,
+                () => Interpreter.run(context)
+            )
         }
-    }
+    },
 })

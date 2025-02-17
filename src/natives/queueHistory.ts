@@ -1,32 +1,36 @@
-import { Arg, ArgType, NativeFunction } from "@tryforge/forgescript"
-import { PLACEHOLDER_PATTERN } from "@utils/constants"
-import { createContext, runInContext } from "node:vm"
-import { useQueue } from "discord-player"
+import { Arg, ArgType, NativeFunction } from '@tryforge/forgescript'
+import { PLACEHOLDER_PATTERN } from '@utils/constants'
+import { createContext, runInContext } from 'node:vm'
+import { useQueue } from 'discord-player'
 
 export default new NativeFunction({
-    name: "$queueHistory",
-    description: "Returns queue history songs resolving the given text placeholders.",
-    version: "1.0.0",
+    name: '$queueHistory',
+    description:
+        'Returns queue history songs resolving the given text placeholders.',
+    version: '1.0.0',
     brackets: false,
     unwrap: true,
     args: [
-        Arg.optionalNumber("Start Index", "The queue song start index."),
-        Arg.optionalNumber("Limit", "The amount of queue history songs to be retrieved."),
-        Arg.optionalString("Text", "The text to be resolved."),
-        Arg.optionalString("Separator", "The separator for each result.")
-
+        Arg.optionalNumber('Start Index', 'The queue song start index.'),
+        Arg.optionalNumber(
+            'Limit',
+            'The amount of queue history songs to be retrieved.'
+        ),
+        Arg.optionalString('Text', 'The text to be resolved.'),
+        Arg.optionalString('Separator', 'The separator for each result.'),
     ],
     output: ArgType.String,
     async execute(ctx, [index, limit, text, separator]) {
-        const queue = useQueue(ctx.guild)
+        const queue = useQueue(ctx.guild.id)
         let tracks = queue.history.tracks.data
-        if (index) tracks = tracks.slice(index, limit ?? undefined);
+        if (index) tracks = tracks.slice(index, limit ?? undefined)
 
         const resolvedTracks: string[] = []
 
-        text ??= "{position} {track.title} | {track.requestedBy}"
+        text ??= '{position} {track.title} | {track.requestedBy}'
 
-        let i = 0, advance = () => i++
+        let i = 0,
+            advance = () => i++
         for (const track of tracks) {
             let result = text.replace(/\{position\}/g, String(i + 1))
 
@@ -40,15 +44,21 @@ export default new NativeFunction({
             const context = createContext({ track })
             for (const match of matches) {
                 const placeholderValue = match.slice(1, -1)
-                const placeholderResult = runInContext(placeholderValue, context)
+                const placeholderResult = runInContext(
+                    placeholderValue,
+                    context
+                )
 
-                result = result.replace(new RegExp(match, "g"), placeholderResult)
+                result = result.replace(
+                    new RegExp(match, 'g'),
+                    placeholderResult
+                )
             }
 
             resolvedTracks.push(result)
             advance()
         }
-        
-        return this.success(resolvedTracks.join(separator ?? ","))
-    }
+
+        return this.success(resolvedTracks.join(separator ?? ','))
+    },
 })

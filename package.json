@@ -1,41 +1,43 @@
 {
-  "name": "@tryforge/forge.music",
-  "version": "1.0.0",
-  "description": "Extension to add music functionality to your ForgeScript bot.",
-  "main": "./dist/index.js",
-  "types": "./types/index.d.ts",
-  "scripts": {
-    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json && node ./dist/docgen.js",
-    "test": "node ./__test__"
-  },
-  "keywords": [
-    "forgescript",
-    "forge",
-    "music",
-    "botforge",
-    "bdfd-music"
-  ],
-  "author": "BotForge",
-  "packageManager": "pnpm@9.15.2",
-  "license": "GPL-3.0",
-  "devDependencies": {
-    "@tryforge/forgescript": "^2.2.0",
-    "ascii-table3": "^0.9.0",
-    "discord-player-youtubei": "^1.4.1",
-    "discord.js": "^14.17.3",
-    "dotenv": "^16.4.7",
-    "tsc-alias": "^1.8.10",
-    "typescript": "^5.7.3"
-  },
-  "dependencies": {
-    "@discord-player/extractor": "^7.1.0",
-    "discord-player": "^7.1.0"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "allowedVersions": {
-        "@discord-player/extractor": "7"
-      }
+    "name": "@tryforge/forge.music",
+    "version": "1.0.0",
+    "description": "Extension to add music functionality to your ForgeScript bot.",
+    "main": "./dist/index.js",
+    "types": "./types/index.d.ts",
+    "scripts": {
+        "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json && node ./dist/docgen.js && pnpm prettier",
+        "test": "node ./__test__",
+        "prettier": "prettier . --write"
+    },
+    "keywords": [
+        "forgescript",
+        "forge",
+        "music",
+        "botforge",
+        "bdfd-music"
+    ],
+    "author": "BotForge",
+    "packageManager": "pnpm@9.15.4",
+    "license": "GPL-3.0",
+    "devDependencies": {
+        "@tryforge/forgescript": "^2.2.0",
+        "ascii-table3": "^0.9.0",
+        "discord-player-youtubei": "^1.4.1",
+        "discord.js": "^14.18.0",
+        "dotenv": "^16.4.7",
+        "prettier": "3.5.1",
+        "tsc-alias": "^1.8.10",
+        "typescript": "^5.7.3"
+    },
+    "dependencies": {
+        "@discord-player/extractor": "^7.1.0",
+        "discord-player": "^7.1.0"
+    },
+    "pnpm": {
+        "peerDependencyRules": {
+            "allowedVersions": {
+                "@discord-player/extractor": "7"
+            }
+        }
     }
-  }
 }

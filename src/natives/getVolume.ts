@@ -1,13 +1,14 @@
-import { ArgType, NativeFunction } from "@tryforge/forgescript"
-import getNode from "@utils/getNode"
+import { ArgType, NativeFunction } from '@tryforge/forgescript'
+import { useQueue } from 'discord-player'
 
 export default new NativeFunction({
-    name: "$getVolume",
-    version: "1.0.0",
-    description: "Get the current volume of the music player.",
+    name: '$getVolume',
+    version: '1.0.0',
+    description: 'Get the current volume of the music player.',
     unwrap: false,
     output: ArgType.Number,
     execute(ctx) {
-        return this.success(getNode(ctx).volume)
-    }
+        const queue = useQueue(ctx.guild.id)
+        return this.success(queue.node.volume)
+    },
 })

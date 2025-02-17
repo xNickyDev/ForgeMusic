@@ -1,16 +1,17 @@
-import { Arg, NativeFunction } from "@tryforge/forgescript"
-import getNode from "@utils/getNode"
+import { Arg, NativeFunction } from '@tryforge/forgescript'
+import { useQueue } from 'discord-player'
 
 export default new NativeFunction({
-    name: "$setVolume",
-    version: "1.0.0",
-    description: "Set the volume of the music player.",
+    name: '$setVolume',
+    version: '1.0.0',
+    description: 'Set the volume of the music player.',
     brackets: true,
     unwrap: true,
-    args: [Arg.requiredNumber("Amount", "The volume amount to be applied.")],
+    args: [Arg.requiredNumber('Amount', 'The volume amount to be applied.')],
     execute(ctx, [amount]) {
-        getNode(ctx).setVolume(amount)
+        const queue = useQueue(ctx.guild.id)
+        queue.node.setVolume(amount)
 
         return this.success()
-    }
+    },
 })

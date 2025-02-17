@@ -9,7 +9,7 @@ exports.default = new forgescript_1.NativeFunction({
     unwrap: false,
     execute(ctx) {
         const player = (0, discord_player_1.useMainPlayer)();
-        player.queues.get(ctx.guild).tracks.shuffle();
+        player.queues.get(ctx.guild.id).tracks.shuffle();
         return this.success();
     }
 });

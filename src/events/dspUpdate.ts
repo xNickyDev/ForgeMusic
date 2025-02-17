@@ -1,7 +1,7 @@
-import { MusicEventHandler } from "@handlers/MusicEventHandler"
-import { Context, Interpreter } from "@tryforge/forgescript"
-import { ForgeMusic } from "@structures/ForgeMusic"
-import { GuildQueueEvent } from "discord-player"
+import { MusicEventHandler } from '@handlers/MusicEventHandler'
+import { Context, Interpreter } from '@tryforge/forgescript'
+import { ForgeMusic } from '@structures/ForgeMusic'
+import { GuildQueueEvent } from 'discord-player'
 
 /**
  * The event should be listen to.
@@ -10,10 +10,10 @@ const eventName = GuildQueueEvent.DSPUpdate
 
 export default new MusicEventHandler({
     name: eventName,
-    description: "Executed when dsp filters are updated.",
+    description: 'Executed when dsp filters are updated.',
     async listener(queue, oldFilters, newFilters) {
         const commands = this.getExtension(ForgeMusic).commands.get(eventName)
-        if (!commands) return;
+        if (!commands) return
 
         for (const command of commands) {
             const context = new Context({
@@ -21,13 +21,13 @@ export default new MusicEventHandler({
                 client: this,
                 command,
                 environment: { queue, oldFilters, newFilters },
-                data: command.compiled.code
+                data: command.compiled.code,
             })
-            
-            await this.getExtension(ForgeMusic)
-            .player
-            .context
-            .provide(context, () => Interpreter.run(context))
+
+            await this.getExtension(ForgeMusic).player.context.provide(
+                context,
+                () => Interpreter.run(context)
+            )
         }
-    }
+    },
 })

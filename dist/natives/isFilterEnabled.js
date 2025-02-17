@@ -12,7 +12,7 @@ exports.default = new forgescript_1.NativeFunction({
     args: [forgescript_1.Arg.requiredEnum(constants_1.FFMPEGFilters, "Filters", "Filter names to be toggled.")],
     output: forgescript_1.ArgType.Boolean,
     async execute(ctx, [filter]) {
-        const queue = (0, discord_player_1.useQueue)(ctx.guild);
+        const queue = (0, discord_player_1.useQueue)(ctx.guild.id);
         const allFilters = queue.filters.ffmpeg.getFiltersEnabled().concat(queue.filters.ffmpeg.getFiltersDisabled());
         const foundFilter = allFilters.find((fil) => fil.toLowerCase() === filter.toLowerCase());
         return this.success(queue.filters.ffmpeg.isEnabled(foundFilter));

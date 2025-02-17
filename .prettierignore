@@ -1,0 +1,7 @@
+# Ignore artifacts:
+dist
+types
+docs
+metadata
+__test__
+__dump__
