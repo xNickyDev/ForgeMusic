@@ -248,6 +248,19 @@ const music = new ForgeMusic({
 })
 ```
 
+### Attach All Events
+
+If you want to attach all events, there is no need of writing each one manually, instead, you
+can import the constant `AllEvents` and put it into `events` property.
+
+```js
+const { AllEvents } = require('@tryforge/forge.music')
+const music = new ForgeMusic({
+    events: AllEvents,
+    // ...
+})
+```
+
 ### Adding Support for YouTube
 
 ForgeMusic by default does not provide support for streaming from YouTube.
@@ -273,14 +286,8 @@ const music = new ForgeMusic({
         GuildQueueEvent.PlayerError,
         GuildQueueEvent.Error,
     ],
-    includeExtractors: DefaultExtractors,
+    includeExtractors: [...DefaultExtractors, YoutubeiExtractor],
 })
-```
-
-With the previous step done, register the **YoutubeiExtractor** into the extension registry.
-
-```js
-music.player.extractors.register(YoutubeiExtractor, {})
 ```
 
 And now, you're ready to use YouTube provider as smooth as possible.
