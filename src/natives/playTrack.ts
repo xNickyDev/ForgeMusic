@@ -69,8 +69,6 @@ export default new NativeFunction({
                 return e
             })
 
-        console.log(['PLAY_TRACK_RESULTS', result])
-
         return executed ? this.success() : this.error(result)
     },
 })
