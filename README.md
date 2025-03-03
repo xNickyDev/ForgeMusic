@@ -2,7 +2,7 @@
 
 # ForgeMusic
 
-An standard music library tailored for [ForgeScript](https://npmjs.com/package/@tryforge/forgescript).
+A standard music library tailored for [ForgeScript](https://npmjs.com/package/@tryforge/forgescript).
 
 <a href="https://github.com/tryforge/ForgeDB/"><img src="https://img.shields.io/github/package-json/v/tryforge/ForgeMusic/main?label=@tryforge/forge.music&color=5c16d4" alt="@tryforge/forge.music"></a>
 <a href="https://github.com/tryforge/ForgeScript/"><img src="https://img.shields.io/github/package-json/v/tryforge/ForgeScript/main?label=@tryforge/forgescript&color=5c16d4" alt="@tryforge/forgescript"></a>
