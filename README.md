@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/Ew9MXaP.jpeg" align="right" height=100 alt="isologo" />
+<img src="https://i.imgur.com/Ew9MXaP.jpeg" align="right" height=100 width=100 alt="isologo" />
 
 # ForgeMusic
 
